@@ -13,6 +13,11 @@
 <body>
     <header class="header">
         <div class="container header__container">
+            <button class="theme-toggle" id="themeToggle" aria-label="Переключить цветовую тему" title="Сменить цвет">
+                <span class="theme-toggle__dot theme-toggle__dot--blue"></span>
+                <span class="theme-toggle__dot theme-toggle__dot--red"></span>
+            </button>
+
             <p class="header__subtitle">РЭУ им. Г.В. Плеханова</p>
             <h1 class="header__title">
                 Высшая школа <br>
@@ -112,8 +117,7 @@
                     <button class="gallery__nav-btn gallery__nav-btn--next" aria-label="Вперед">→</button>
                 </div>
                 <div class="gallery__footer">
-                    <div class="gallery__dots">
-                    </div>
+                    <div class="gallery__dots"></div>
                     <div class="gallery__counter">
                         <span id="current-slide">1</span> <span class="gallery__counter-separator">/</span> <span id="total-slides">6</span>
                     </div>
@@ -239,7 +243,7 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="script.js"></script>
     <script src="block.js"></script>
 </body>

@@ -1,4 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // =========================================
+    //   Переключатель темы
+    // =========================================
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme') || 'blue';
+    if (savedTheme === 'red') {
+        htmlElement.setAttribute('data-theme', 'red');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.add('theme-transitioning');
+
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'red' ? 'blue' : 'red';
+
+            if (newTheme === 'blue') {
+                htmlElement.removeAttribute('data-theme');
+            } else {
+                htmlElement.setAttribute('data-theme', 'red');
+            }
+
+            localStorage.setItem('theme', newTheme);
+
+            // Убираем класс плавности через 400мс
+            setTimeout(() => {
+                document.body.classList.remove('theme-transitioning');
+            }, 400);
+        });
+    }
+
+    // =========================================
+    //   Галерея
+    // =========================================
     const track = document.querySelector('.gallery__track');
     const slides = Array.from(track.children);
     const nextBtn = document.querySelector('.gallery__nav-btn--next');
@@ -11,28 +47,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     totalCounter.textContent = slides.length;
 
-    // --- Генерация точек навигации ---
+    // Генерация точек навигации
     slides.forEach((_, index) => {
         const dot = document.createElement('button');
         dot.classList.add('gallery__dot');
         if (index === 0) dot.classList.add('gallery__dot--active');
         dot.setAttribute('aria-label', `Перейти к слайду ${index + 1}`);
-        
-        // Обработчик клика по точке
+
         dot.addEventListener('click', () => {
             currentIndex = index;
             updateGallery();
         });
-        
+
         dotsContainer.appendChild(dot);
     });
 
     const dots = Array.from(dotsContainer.children);
 
-    // --- Основная функция обновления галереи ---
+    // Обновление галереи
     const updateGallery = () => {
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        
         currentCounter.textContent = currentIndex + 1;
 
         dots.forEach((dot, index) => {
@@ -40,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- Обработчики кнопок "Вперед" и "Назад" ---
+    // Кнопки навигации
     nextBtn.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % slides.length;
         updateGallery();
@@ -51,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateGallery();
     });
 
-    // --- Поддержка свайпов (Touch Events) ---
+    // Свайпы
     let startX = 0;
     let endX = 0;
 
@@ -65,20 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     const handleSwipe = () => {
-        const threshold = 50; 
-        
+        const threshold = 50;
+
         if (startX - endX > threshold) {
-            // Свайп влево -> следующий слайд
             currentIndex = (currentIndex + 1) % slides.length;
             updateGallery();
         } else if (endX - startX > threshold) {
-            // Свайп вправо -> предыдущий слайд
             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
             updateGallery();
         }
     };
 
-    // --- Управление с клавиатуры (для десктопов) ---
+    // Клавиатура
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') {
             currentIndex = (currentIndex + 1) % slides.length;
