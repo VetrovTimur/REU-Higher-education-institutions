@@ -704,7 +704,9 @@ html[data-theme="red"] .theme-toggle__dot--red {
 .alumni__item img {
     display: block;
     width: 100%;
-    height: 372px;
+    aspect-ratio: 1 / 1;           /* Квадрат — фото никогда не растянется */
+    object-fit: cover;             /* Обрезаем, не тянем */
+    object-position: center top;   /* Фокус на верх — лицо не обрежется */
     background: linear-gradient(140deg, var(--color-gradient-start), var(--color-gradient-end));
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
@@ -982,6 +984,8 @@ html[data-theme="red"] .theme-toggle__dot--red {
 /* =========================================
    Responsive / Media Queries
    ========================================= */
+
+/* --- Планшет: 2 карточки в слайдерах --- */
 @media (max-width: 1024px) {
     .section {
         padding: 60px 0;
@@ -999,12 +1003,21 @@ html[data-theme="red"] .theme-toggle__dot--red {
     .partners__item img {
         padding: 60px;
     }
+}
 
-    .alumni__item img {
-        height: 320px;
+/* --- Планшет/большая мобилка: 1 карточка в слайдерах --- */
+@media (max-width: 640px) {
+    .partners__item,
+    .alumni__item {
+        flex: 0 0 100%;
+    }
+
+    .partners__item img {
+        padding: 60px 40px;
     }
 }
 
+/* --- Мобилка --- */
 @media (max-width: 768px) {
     .section {
         padding: 40px 0;
@@ -1082,6 +1095,7 @@ html[data-theme="red"] .theme-toggle__dot--red {
     }
 }
 
+/* --- Узкая мобилка --- */
 @media (max-width: 480px) {
     .school-menu__list {
         grid-template-columns: 1fr;
@@ -1152,19 +1166,6 @@ html[data-theme="red"] .theme-toggle__dot--red {
         max-height: 320px;
         min-height: 200px;
         border-radius: 12px;
-    }
-
-    .partners__item,
-    .alumni__item {
-        flex: 0 0 100%;
-    }
-
-    .partners__item img {
-        padding: 50px 30px;
-    }
-
-    .alumni__item img {
-        height: 260px;
     }
 
     .alumni__content {

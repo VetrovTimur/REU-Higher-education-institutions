@@ -143,11 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
             this.update(false);
         }
 
-        /* Сколько карточек видно при текущей ширине экрана */
+        /* Сколько карточек видно — синхронизировано с CSS-брейкпоинтами */
         calcVisible() {
             const w = window.innerWidth;
-            if (w < 768) this.visible = 1;
-            else if (w < 1024) this.visible = 2;
+            if (w <= 640) this.visible = 1;
+            else if (w <= 1024) this.visible = 2;
             else this.visible = 3;
 
             this.visible = Math.min(this.visible, this.items.length);
