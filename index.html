@@ -44,7 +44,6 @@
             <!-- Секция О школе -->
             <section class="about section" id="about">
                 <div class="section-header">
-                    <!-- <p class="section-header__subtitle">О Школе</p> -->
                     <h2 class="section-header__title">О Школе</h2>
                 </div>
                 <div class="about__box">
@@ -62,12 +61,16 @@
                         </ul>
                     </div>
                 </div>
+                <iframe class="about__video"
+                    src="https://rutube.ru/play/embed/36a1a3140582ad55bb6777d8fc4c711f"
+                    allow="clipboard-write;"
+                    allowFullScreen
+                ></iframe>
             </section>
 
             <!-- Секция Программы -->
             <section class="programs section" id="programs">
                 <div class="section-header">
-                    <!-- <p class="section-header__subtitle">Программы</p> -->
                     <h2 class="section-header__title">Программы</h2>
                 </div>
                 <div class="programs__box">
@@ -101,19 +104,21 @@
             <!-- Секция Фотогалерея -->
             <section class="gallery section" id="gallery">
                 <div class="section-header">
-                    <!-- <p class="section-header__subtitle">Фотогалерея</p> -->
                     <h2 class="section-header__title">Фотогалерея</h2>
                 </div>
                 <div class="gallery__slider">
                     <div class="gallery__track">
                         <div class="gallery__slide">
-                            <img src="img/1.jpg" alt="">
+                            <img src="img/1.png" alt="">
                         </div>
                         <div class="gallery__slide">
-                            <img src="img/2.jpg" alt="">
+                            <img src="img/2.png" alt="">
                         </div>
                         <div class="gallery__slide">
-                            <img src="img/3.jpg" alt="">
+                            <img src="img/3.png" alt="">
+                        </div>
+                        <div class="gallery__slide">
+                            <img src="img/4.png" alt="">
                         </div>
                     </div>
                     <button class="gallery__nav-btn gallery__nav-btn--prev" aria-label="Назад">←</button>
@@ -122,7 +127,7 @@
                 <div class="gallery__footer">
                     <div class="gallery__dots"></div>
                     <div class="gallery__counter">
-                        <span id="current-slide">1</span> <span class="gallery__counter-separator">/</span> <span id="total-slides">6</span>
+                        <span id="current-slide">1</span> <span class="gallery__counter-separator">/</span> <span id="total-slides">3</span>
                     </div>
                 </div>
             </section>
@@ -130,7 +135,6 @@
             <!-- Секция Руководство -->
             <section class="leadership section" id="leadership">
                 <div class="section-header">
-                    <!-- <p class="section-header__subtitle">Руководство</p> -->
                     <h2 class="section-header__title">Руководство</h2>
                 </div>
                 <div class="leadership__box">
@@ -154,27 +158,150 @@
             </section>
 
             <!-- Секция Партнеры -->
-            <section class="partners section" id="partners">
+            <section class="partners section" id="partners" data-slider="partners">
                 <div class="section-header">
-                    <!-- <p class="section-header__subtitle">Индустриальные партнеры</p> -->
                     <h2 class="section-header__title">Индустриальные <br> партнеры</h2>
                 </div>
-                <div class="partners__box">Логотипы партнёров</div>
+
+                <div class="partners__slider">
+                    <div class="partners__box">
+                        <div class="partners__item">
+                            <img src="./img/Avito.png" alt="Авито">
+                            <p>Авито</p>
+                        </div>
+                        <div class="partners__item">
+                            <img src="./img/Ozon.png" alt="Ozon">
+                            <p>Ozon</p>
+                        </div>
+                        <div class="partners__item">
+                            <img src="./img/Avito.png" alt="Авито">
+                            <p>Авито</p>
+                        </div>
+                        <div class="partners__item">
+                            <img src="./img/Ozon.png" alt="Ozon">
+                            <p>Ozon</p>
+                        </div>
+                        <div class="partners__item">
+                            <img src="./img/Avito.png" alt="Авито">
+                            <p>Авито</p>
+                        </div>
+                        <div class="partners__item">
+                            <img src="./img/Ozon.png" alt="Ozon">
+                            <p>Ozon</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="partners__management">
+                    <div class="partners__dots"></div>
+                    <div class="partners__buttons">
+                        <button class="partners__button" data-slider-prev aria-label="Назад">←</button>
+                        <button class="partners__button" data-slider-next aria-label="Вперед">→</button>
+                    </div>
+                </div>
             </section>
 
             <!-- Секция Выпускники -->
-            <section class="alumni section" id="alumni">
+            <section class="alumni section" id="alumni" data-slider="alumni">
                 <div class="section-header">
-                    <!-- <p class="section-header__subtitle">Наши выпускники</p> -->
                     <h2 class="section-header__title">Наши выпускники</h2>
                 </div>
-                <div class="alumni__box">Истории выпускников</div>
+
+                <div class="alumni__slider">
+                    <div class="alumni__box">
+                        <div class="alumni__item">
+                            <img src="./img/Голикова.png" alt="">
+                            <div class="alumni__content">
+                                <h4 class="alumni__title">Голикова Татьяна Алексеевна</h4>
+                                <span>1987</span>
+                                <p class="alumni__text">
+                                    Российский государственный деятель, экономист. Заместитель Председателя
+                                    Правительства Российской Федерации по вопросам социальной политики. В 1987 году
+                                    окончила РЭУ им. Г.В. Плеханова (МИНХ им. Г.В. Плеханова) по специальности
+                                    «Экономика труда».
+                                </p>
+                            </div>
+                        </div>
+                        <div class="alumni__item">
+                            <img src="./img/Топилин.jpg" alt="">
+                            <div class="alumni__content">
+                                <h4 class="alumni__title">Топилин Максим Анатольевич</h4>
+                                <span>1988</span>
+                                <p class="alumni__text">
+                                    Российский государственный и политический деятель. Председатель Комитета
+                                    Государственной Думы по экономической политике. В 1988 году окончил РЭУ им. Г.В.
+                                    Плеханова (МИНХ им. Г.В. Плеханова) по специальности «экономист».
+                                </p>
+                            </div>
+                        </div>
+                        <div class="alumni__item">
+                            <img src="./img/Лавров.png" alt="">
+                            <div class="alumni__content">
+                                <h4 class="alumni__title">Андрей Лавров</h4>
+                                <span>1988</span>
+                                <p class="alumni__text">
+                                    Первый заместитель генерального директора АО «Гринатом» — ИТ-интегратора
+                                    Госкорпорации «Росатом». Компания создаёт самые современные решения для
+                                    цифровизации Росатома и является одной из самых динамично развивающихся
+                                    ИТ-компаний России. Обучался в РЭУ им. Г.В. Плеханова по магистерской программе
+                                    «Внешнеэкономическая деятельность».
+                                </p>
+                            </div>
+                        </div>
+                        <div class="alumni__item">
+                            <img src="./img/Голикова.png" alt="">
+                            <div class="alumni__content">
+                                <h4 class="alumni__title">Голикова Татьяна Алексеевна</h4>
+                                <span>1987</span>
+                                <p class="alumni__text">
+                                    Российский государственный деятель, экономист. Заместитель Председателя
+                                    Правительства Российской Федерации по вопросам социальной политики. В 1987 году
+                                    окончила РЭУ им. Г.В. Плеханова (МИНХ им. Г.В. Плеханова) по специальности
+                                    «Экономика труда».
+                                </p>
+                            </div>
+                        </div>
+                        <div class="alumni__item">
+                            <img src="./img/Топилин.jpg" alt="">
+                            <div class="alumni__content">
+                                <h4 class="alumni__title">Топилин Максим Анатольевич</h4>
+                                <span>1988</span>
+                                <p class="alumni__text">
+                                    Российский государственный и политический деятель. Председатель Комитета
+                                    Государственной Думы по экономической политике. В 1988 году окончил РЭУ им. Г.В.
+                                    Плеханова (МИНХ им. Г.В. Плеханова) по специальности «экономист».
+                                </p>
+                            </div>
+                        </div>
+                        <div class="alumni__item">
+                            <img src="./img/Лавров.png" alt="">
+                            <div class="alumni__content">
+                                <h4 class="alumni__title">Андрей Лавров</h4>
+                                <span>1988</span>
+                                <p class="alumni__text">
+                                    Первый заместитель генерального директора АО «Гринатом» — ИТ-интегратора
+                                    Госкорпорации «Росатом». Компания создаёт самые современные решения для
+                                    цифровизации Росатома и является одной из самых динамично развивающихся
+                                    ИТ-компаний России. Обучался в РЭУ им. Г.В. Плеханова по магистерской программе
+                                    «Внешнеэкономическая деятельность».
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alumni__management">
+                    <div class="alumni__dots"></div>
+                    <div class="alumni__buttons">
+                        <button class="alumni__button" data-slider-prev aria-label="Назад">←</button>
+                        <button class="alumni__button" data-slider-next aria-label="Вперед">→</button>
+                    </div>
+                </div>
             </section>
 
             <!-- Секция Контакты -->
             <section class="contacts section" id="contacts">
                 <div class="section-header">
-                    <!-- <p class="section-header__subtitle">Контакты</p> -->
                     <h2 class="section-header__title">Контакты</h2>
                 </div>
                 <div class="contacts__box">
@@ -215,10 +342,40 @@
     </main>
 
     <footer class="footer">
-        <div class="container footer__container">
+        <div class="container footer__container mb-56">
             <div class="footer__left">
                 <p class="footer__title">Мы в социальных сетях</p>
                 <p class="footer__text">Следите за новостями Высшей школы экономики и бизнеса в официальных каналах университета.</p>
+            </div>
+            <div class="footer__right">
+                <a href="#" class="footer__social-link">
+                    <svg class="footer__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_468)">
+                        <path d="M11.944 3.26667e-05C8.77112 0.0148396 5.73324 1.28566 3.4949 3.53449C1.25656 5.78332 -3.4549e-05 8.82711 7.12435e-10 12C7.12441e-10 15.1826 1.26428 18.2349 3.51472 20.4853C5.76516 22.7357 8.8174 24 12 24C15.1826 24 18.2348 22.7357 20.4853 20.4853C22.7357 18.2349 24 15.1826 24 12C24 8.81743 22.7357 5.76519 20.4853 3.51475C18.2348 1.26431 15.1826 3.26667e-05 12 3.26667e-05C11.9813 -1.08889e-05 11.9627 -1.08889e-05 11.944 3.26667e-05ZM16.906 7.22403C17.006 7.22203 17.227 7.24703 17.371 7.36403C17.4667 7.44713 17.5277 7.56311 17.542 7.68903C17.558 7.78203 17.578 7.99503 17.562 8.16103C17.382 10.059 16.6 14.663 16.202 16.788C16.034 17.688 15.703 17.989 15.382 18.018C14.686 18.083 14.157 17.558 13.482 17.116C12.426 16.423 11.829 15.992 10.804 15.316C9.619 14.536 10.387 14.106 11.062 13.406C11.239 13.222 14.309 10.429 14.369 10.176C14.376 10.144 14.383 10.026 14.313 9.96403C14.243 9.90203 14.139 9.92303 14.064 9.94003C13.958 9.96403 12.271 11.08 9.003 13.285C8.523 13.615 8.09 13.775 7.701 13.765C7.273 13.757 6.449 13.524 5.836 13.325C5.084 13.08 4.487 12.951 4.539 12.536C4.566 12.32 4.864 12.099 5.432 11.873C8.93 10.349 11.262 9.34403 12.43 8.85903C15.762 7.47303 16.455 7.23203 16.906 7.22403Z" fill="currentColor"/>
+                        </g>
+                        <defs><clipPath id="clip0_1_468"><rect width="24" height="24" fill="white"/></clipPath></defs>
+                    </svg>
+                    <span class="footer__social-text">Telegram</span>
+                </a>
+                <a href="#" class="footer__social-link">
+                    <svg class="footer__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_1_476)"><path d="M13.1622 18.994C13.7712 18.994 14.0202 18.588 14.0132 18.079C13.9822 16.162 14.7272 15.13 16.0722 16.475C17.5602 17.963 17.8682 18.994 19.6752 18.994H22.8752C23.6832 18.994 24.0012 18.734 24.0012 18.326C24.0012 17.463 22.5802 15.94 21.3762 14.822C19.6902 13.257 19.6112 13.22 21.0632 11.336C22.8642 8.997 25.2202 6 23.1362 6H19.1552C18.3832 6 18.3272 6.435 18.0522 7.083C17.0572 9.43 15.1662 12.47 14.4482 12.005C13.6972 11.52 14.0412 9.599 14.0982 6.744C14.1132 5.99 14.1092 5.473 12.9572 5.205C12.3282 5.06 11.7162 5 11.1482 5C8.87521 5 7.30721 5.953 8.19821 6.119C9.76921 6.412 9.61821 9.811 9.25221 11.279C8.61421 13.835 6.21621 9.255 5.21721 6.974C4.97621 6.426 4.90221 6 4.04221 6H1.04921C0.557207 6 0.262207 6.16 0.262207 6.516C0.262207 7.118 3.22221 13.236 6.04821 16.286C8.80421 19.261 11.5282 18.994 13.1622 18.994Z" fill="currentColor"/></g>
+                    <defs><clipPath id="clip0_1_476"><rect width="24" height="24" fill="white"/></clipPath></defs>
+                    </svg>
+                    <span class="footer__social-text">ВКонтакте</span>
+                </a>
+                <a href="#" class="footer__social-link">
+                    <svg class="footer__social-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12C22 6.477 17.523 2 12 2ZM10.5 16.5V7.5L17.5 12L10.5 16.5Z" fill="currentColor"/>
+                    </svg>
+                    <span class="footer__social-text">MAX</span>
+                </a>
+            </div>
+        </div>
+        <div class="container footer__container">
+            <div class="footer__left">
+                <p class="footer__title">Социальные сети университета</p>
+                <p class="footer__text">Официальные каналы РЭУ им. Г.В. Плеханова — подписывайтесь, чтобы быть в курсе событий.</p>
             </div>
             <div class="footer__right">
                 <a href="#" class="footer__social-link">

@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+
     // =========================================
     //   Переключатель темы
     // =========================================
@@ -25,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             localStorage.setItem('theme', newTheme);
 
-            // Убираем класс плавности через 400мс
             setTimeout(() => {
                 document.body.classList.remove('theme-transitioning');
             }, 400);
@@ -120,4 +120,162 @@ document.addEventListener('DOMContentLoaded', () => {
             updateGallery();
         }
     });
+
+    // =========================================
+    //   Универсальный слайдер (Partners / Alumni)
+    // =========================================
+    class SimpleSlider {
+        constructor(section) {
+            this.section = section;
+            this.prefix = section.dataset.slider;          // "partners" | "alumni"
+            this.track = section.querySelector(`.${this.prefix}__box`);
+            this.items = Array.from(this.track.children);
+            this.prevBtn = section.querySelector('[data-slider-prev]');
+            this.nextBtn = section.querySelector('[data-slider-next]');
+            this.dotsWrap = section.querySelector(`.${this.prefix}__dots`);
+
+            this.index = 0;
+            this.visible = 3;
+
+            this.calcVisible();
+            this.renderDots();
+            this.bindEvents();
+            this.update(false);
+        }
+
+        /* Сколько карточек видно при текущей ширине экрана */
+        calcVisible() {
+            const w = window.innerWidth;
+            if (w < 768) this.visible = 1;
+            else if (w < 1024) this.visible = 2;
+            else this.visible = 3;
+
+            this.visible = Math.min(this.visible, this.items.length);
+        }
+
+        /* Максимальный индекс докрутки */
+        getMaxIndex() {
+            return Math.max(0, this.items.length - this.visible);
+        }
+
+        /* Генерация точек по количеству позиций */
+        renderDots() {
+            this.dotsWrap.innerHTML = '';
+            const max = this.getMaxIndex();
+
+            for (let i = 0; i <= max; i++) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = `${this.prefix}__dot`;
+                dot.setAttribute('aria-label', `Перейти к слайду ${i + 1}`);
+
+                if (i === this.index) {
+                    dot.classList.add(`${this.prefix}__dot--active`);
+                }
+
+                dot.addEventListener('click', () => {
+                    this.index = i;
+                    this.update();
+                });
+
+                this.dotsWrap.appendChild(dot);
+            }
+        }
+
+        /* Обновление позиции трека, точек и кнопок */
+        update(animate = true) {
+            const max = this.getMaxIndex();
+            this.index = Math.max(0, Math.min(this.index, max));
+
+            this.track.style.transition = animate
+                ? 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)'
+                : 'none';
+
+            const firstItem = this.items[0];
+            if (!firstItem) return;
+
+            const itemWidth = firstItem.getBoundingClientRect().width;
+            const styles = getComputedStyle(this.track);
+            const gap = parseFloat(styles.columnGap) || parseFloat(styles.gap) || 0;
+
+            const offset = this.index * (itemWidth + gap);
+            this.track.style.transform = `translateX(-${offset}px)`;
+
+            /* Активная точка */
+            Array.from(this.dotsWrap.children).forEach((dot, i) => {
+                dot.classList.toggle(`${this.prefix}__dot--active`, i === this.index);
+            });
+
+            /* Блокировка кнопок на границах */
+            if (this.prevBtn) this.prevBtn.disabled = this.index === 0;
+            if (this.nextBtn) this.nextBtn.disabled = this.index === max;
+        }
+
+        bindEvents() {
+            /* Кнопки */
+            this.prevBtn?.addEventListener('click', () => {
+                this.index--;
+                this.update();
+            });
+
+            this.nextBtn?.addEventListener('click', () => {
+                this.index++;
+                this.update();
+            });
+
+            /* Свайпы с фильтром по оси */
+            let startX = 0;
+            let startY = 0;
+            let isHorizontal = null;
+
+            this.track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isHorizontal = null;
+            }, { passive: true });
+
+            this.track.addEventListener('touchmove', (e) => {
+                if (isHorizontal === null) {
+                    const dx = Math.abs(e.touches[0].clientX - startX);
+                    const dy = Math.abs(e.touches[0].clientY - startY);
+                    isHorizontal = dx > dy;
+                }
+            }, { passive: true });
+
+            this.track.addEventListener('touchend', (e) => {
+                if (!isHorizontal) return;
+
+                const dx = e.changedTouches[0].clientX - startX;
+                if (Math.abs(dx) < 50) return;
+
+                if (dx < 0) this.index++;
+                else this.index--;
+
+                this.update();
+            });
+
+            /* Пересчёт при ресайзе */
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    const oldVisible = this.visible;
+                    this.calcVisible();
+
+                    if (oldVisible !== this.visible) {
+                        this.index = 0;
+                        this.renderDots();
+                    }
+
+                    this.update(false);
+                }, 150);
+            });
+        }
+    }
+
+    /* Инициализация всех слайдеров на странице */
+    document.querySelectorAll('[data-slider]').forEach((el) => {
+        new SimpleSlider(el);
+    });
+
 });
