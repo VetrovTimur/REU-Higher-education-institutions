@@ -1,0 +1,364 @@
+/* ============================================================
+   DESIGN TOKENS (Переменные)
+   ============================================================ */
+:root {
+    /* Палитра */
+    --paris-blue:       #0F4C81;
+    --paris-blue-dark:  #0A3358;
+    --paris-blue-light: #1E6FB8;
+    --paris-blue-line:  rgba(15, 76, 129, 0.14);
+    --signal-white:     #FFFFFF;
+    --soft-white:       #F5F8FC;
+    --text-main:        #12233B;
+    --text-muted:       #6B7C93;
+    --accent:           #2E8BC0;
+
+    /* Радиусы */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+
+    /* Тени */
+    --shadow-sm: 0 2px 8px  rgba(15, 76, 129, 0.06);
+    --shadow-md: 0 8px 24px rgba(15, 76, 129, 0.10);
+    --shadow-lg: 0 20px 48px rgba(15, 76, 129, 0.16);
+
+    /* Анимации */
+    --transition: cubic-bezier(0.25, 0.8, 0.3, 1);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Tilda Sans', 'Manrope', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 400;
+    background: var(--signal-white);
+    color: var(--text-main);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img,
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.program-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 72px 0 80px;
+    background: var(--paris-blue);
+    color: var(--signal-white);
+}
+
+.program-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.program-hero__eyebrow-line {
+    width: 44px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
+}
+
+.program-hero__title {
+    max-width: 24ch;
+    margin-bottom: 16px;
+    font-size: clamp(32px, 4.4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.program-hero__subtitle {
+    max-width: 640px;
+    margin-bottom: 40px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 32px;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background 0.35s var(--transition),
+        color       0.35s var(--transition),
+        border-color 0.35s var(--transition),
+        transform   0.35s var(--transition),
+        box-shadow  0.35s var(--transition);
+}
+
+.btn--primary {
+    background: var(--signal-white);
+    color: var(--paris-blue-dark);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+}
+
+.btn--primary:hover {
+    background: #EAF3FB;
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.btn--primary:active {
+    transform: translateY(-1px);
+}
+
+.btn--ghost {
+    background: transparent;
+    color: var(--signal-white);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.85);
+    transform: translateY(-3px);
+}
+
+.btn--ghost:active {
+    transform: translateY(-1px);
+}
+
+/* ============================================================
+   SECTION (общие стили секций)
+   ============================================================ */
+.section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--paris-blue-line);
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+/* Заголовок секции */
+.section-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 36px;
+}
+
+.section-head__line {
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+}
+
+.section-head__title {
+    font-size: clamp(22px, 2.6vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--paris-blue-dark);
+}
+
+/* ============================================================
+   PROGRAMS GRID
+   ============================================================ */
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* ============================================================
+   PROGRAM CARD
+   ============================================================ */
+.program-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 32px 28px;
+    background: var(--signal-white);
+    border: 1px solid var(--paris-blue-line);
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    text-decoration: none;
+    overflow: hidden;
+    transition:
+        box-shadow    0.35s var(--transition),
+        border-color  0.35s var(--transition),
+        transform     0.35s var(--transition);
+}
+
+/* Верхняя полоска при ховере */
+.program-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--paris-blue);
+    transition: width 0.5s var(--transition);
+}
+
+.program-card:hover {
+    border-color: rgba(15, 76, 129, 0.28);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.program-card:hover::before {
+    width: 100%;
+}
+
+/* Элементы карточки */
+.program-card__school {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+.program-card__name {
+    margin-top: 4px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    color: var(--paris-blue-dark);
+}
+
+.program-card__code {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+}
+
+.program-card__count {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--paris-blue-line);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.program-card__arrow {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--accent);
+    transition: transform 0.35s var(--transition);
+}
+
+.program-card:hover .program-card__arrow {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .container {
+        padding: 0 24px;
+    }
+
+    .section {
+        padding: 64px 0;
+    }
+
+    .programs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .programs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .program-card {
+        padding: 26px 22px;
+    }
+
+    .program-card__name {
+        font-size: 20px;
+    }
+}
