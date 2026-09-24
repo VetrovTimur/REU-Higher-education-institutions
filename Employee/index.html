@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Высшая школа — Выбор версии</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           Variables
+           ========================================= */
+        :root {
+            --bg-color: #0F4C81;
+            --bg-color-hover: #0A3358;
+            --color-white: #FFFFFF;
+            --color-white-60: rgba(255, 255, 255, 0.6);
+            --color-white-15: rgba(255, 255, 255, 0.15);
+            --color-white-30: rgba(255, 255, 255, 0.3);
+            --font-main: "Manrope", system-ui, -apple-system, sans-serif;
+            --transition: 0.35s cubic-bezier(0.25, 0.8, 0.3, 1);
+        }
+
+        /* =========================================
+           Reset & Base
+           ========================================= */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: linear-gradient(135deg, #0F4C81 0%, #0A3358 100%);
+            color: var(--color-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* =========================================
+           Layout
+           ========================================= */
+        .hub {
+            width: 100%;
+            max-width: 720px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 56px;
+            text-align: center;
+            animation: fadeIn 0.6s ease both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =========================================
+           Header
+           ========================================= */
+        .hub__eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--color-white-60);
+            margin-bottom: 20px;
+        }
+
+        .hub__eyebrow::before {
+            content: "";
+            width: 44px;
+            height: 1px;
+            background-color: var(--color-white-60);
+        }
+
+        .hub__title {
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .hub__subtitle {
+            margin-top: 16px;
+            font-size: clamp(14px, 1.8vw, 17px);
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--color-white-60);
+        }
+
+        /* =========================================
+           Buttons
+           ========================================= */
+        .hub__links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .hub__link {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 32px;
+            padding: 32px 28px;
+            min-height: 180px;
+            border: 1px solid var(--color-white-30);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-decoration: none;
+            color: var(--color-white);
+            text-align: left;
+            overflow: hidden;
+            transition: transform var(--transition),
+                        background var(--transition),
+                        border-color var(--transition),
+                        box-shadow var(--transition);
+        }
+
+        .hub__link::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--color-white);
+            transition: width var(--transition);
+        }
+
+        .hub__link:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--color-white);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+        }
+
+        .hub__link:hover::before {
+            width: 100%;
+        }
+
+        .hub__link:active {
+            transform: translateY(-2px) scale(0.99);
+        }
+
+        /* Номер версии */
+        .hub__link-num {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--color-white-60);
+        }
+
+        /* Заголовок и стрелка */
+        .hub__link-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 16px;
+            font-size: clamp(20px, 2.4vw, 24px);
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        .hub__link-arrow {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--color-white-30);
+            font-size: 18px;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .hub__link:hover .hub__link-arrow {
+            background: var(--color-white);
+            color: var(--bg-color);
+            border-color: var(--color-white);
+            transform: translateX(4px);
+        }
+
+        /* =========================================
+           Footer (копирайт)
+           ========================================= */
+        .hub__footer {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--color-white-60);
+            text-transform: uppercase;
+        }
+
+        /* =========================================
+           Responsive
+           ========================================= */
+        @media (max-width: 640px) {
+            .hub {
+                gap: 40px;
+            }
+
+            .hub__links {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .hub__link {
+                padding: 24px 22px;
+                min-height: 140px;
+                gap: 22px;
+            }
+
+            .hub__link-arrow {
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
+            }
+
+            .hub__eyebrow {
+                font-size: 10px;
+                letter-spacing: 0.2em;
+            }
+
+            .hub__eyebrow::before {
+                width: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="hub">
+
+        <header class="hub__header">
+            <div class="hub__eyebrow">РЭУ им. Г.В. Плеханова</div>
+            <h1 class="hub__title">Страница сотрудника</h1>
+            <p class="hub__subtitle">Выберите версию для просмотра</p>
+        </header>
+
+        <nav class="hub__links" aria-label="Выбор версии">
+
+            <a href="https://www.rea.ru/~person/b29ce9ba512ba218105bdeae06dd59ac" class="hub__link">
+                <span class="hub__link-num">Версия 01</span>
+                <span class="hub__link-title">
+                    Старая версия
+                    <span class="hub__link-arrow" aria-hidden="true">→</span>
+                </span>
+            </a>
+
+            <a href="./Employee page/index.html" class="hub__link">
+                <span class="hub__link-num">Версия 02</span>
+                <span class="hub__link-title">
+                    Новая версия
+                    <span class="hub__link-arrow" aria-hidden="true">→</span>
+                </span>
+            </a>
+
+        </nav>
+
+        <footer class="hub__footer">
+            © 2026 · Все права защищены
+        </footer>
+
+    </main>
+
+    <script src="block.js"></script>
+</body>
+</html>

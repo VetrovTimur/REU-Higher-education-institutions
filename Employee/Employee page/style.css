@@ -1,0 +1,397 @@
+/* =========================================
+   Variables
+   ========================================= */
+:root {
+  /* --- Палитра --- */
+  --paris-blue: #0F4C81;
+  --paris-blue-dark: #0A3358;
+  --paris-blue-light: #1E6FB8;
+  --paris-blue-line: rgba(15, 76, 129, 0.14);
+  --signal-white: #FFFFFF;
+  --soft-white: #F5F8FC;
+  --text-main: #12233B;
+  --text-muted: #6B7C93;
+  --accent: #2E8BC0;
+
+  /* --- Анимации --- */
+  --transition: cubic-bezier(0.25, 0.8, 0.3, 1);
+}
+
+/* =========================================
+   Reset & Base
+   ========================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Tilda Sans', 'Manrope', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 400;
+  background: var(--signal-white);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+button { font-family: inherit; }
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* =========================================
+   BLOCK: person-hero
+   ========================================= */
+.person-hero {
+  background: var(--paris-blue);
+  color: var(--signal-white);
+  padding: 80px 0 90px;
+}
+
+.person-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 56px;
+  align-items: center;
+}
+
+.person-hero__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.person-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.person-hero__eyebrow-line {
+  width: 44px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.person-hero__title {
+  margin-bottom: 28px;
+  font-size: clamp(32px, 4.4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: var(--signal-white);
+}
+
+.person-hero__roles {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.person-hero__role {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.person-hero__role::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-top: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.person-hero__photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--paris-blue-light) 0%, var(--paris-blue-dark) 100%);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.30);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.person-hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* =========================================
+   BLOCK: section
+   ========================================= */
+.section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--paris-blue-line);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section__header {
+  margin-bottom: 40px;
+}
+
+.section__title {
+  font-size: clamp(28px, 3.4vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--paris-blue-dark);
+}
+
+/* =========================================
+   BLOCK: card-list
+   ========================================= */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card-list__item {
+  padding: 24px 28px;
+  background: var(--soft-white);
+  border-radius: 14px;
+  border-left: 3px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-list__year {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.card-list__title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--paris-blue-dark);
+}
+
+.card-list__note {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Скрытая часть (доп. карточки) */
+.card-list__extra {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin-top: -14px; /* Гасит gap родителя, пока свёрнуто */
+  transition:
+    grid-template-rows 0.5s var(--transition),
+    margin-top 0.4s var(--transition);
+}
+
+.card-list__extra-clip {
+  overflow: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card-list--expanded .card-list__extra {
+  grid-template-rows: 1fr;
+  margin-top: 0;
+}
+
+/* Кнопка «Показать ещё» */
+.card-list__toggle {
+  margin: 0 auto;
+  margin-top: 24px;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  border: 1px solid var(--paris-blue-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--paris-blue-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.35s var(--transition),
+    border-color 0.35s var(--transition),
+    color 0.35s var(--transition);
+}
+
+.card-list__toggle:hover {
+  background: var(--paris-blue);
+  border-color: var(--paris-blue);
+  color: var(--signal-white);
+}
+
+.card-list__toggle-icon {
+  display: inline-block;
+  transition: transform 0.35s var(--transition);
+}
+
+.card-list__toggle--open .card-list__toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* =========================================
+   BLOCK: accordion
+   ========================================= */
+.accordion {
+  border-top: 1px solid var(--paris-blue-line);
+}
+
+.accordion__item {
+  border-bottom: 1px solid var(--paris-blue-line);
+  background: var(--signal-white);
+}
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  padding: 26px 0;
+  background: none;
+  border: none;
+  color: var(--paris-blue-dark);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.35s var(--transition);
+}
+
+.accordion__trigger:hover {
+  color: var(--paris-blue);
+}
+
+.accordion__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: transform 0.4s var(--transition);
+}
+
+.accordion__item--open .accordion__icon {
+  transform: rotate(45deg);
+}
+
+.accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.5s var(--transition),
+    padding 0.4s var(--transition);
+  padding: 0;
+}
+
+.accordion__item--open .accordion__panel {
+  max-height: 5000px;
+  padding: 0 0 32px;
+}
+
+.accordion__content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.accordion__block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.accordion__block-title {
+  margin-bottom: 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--paris-blue-line);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--paris-blue-dark);
+}
+
+.accordion__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.accordion__list-item {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-main);
+}
+
+.accordion__list-item::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* =========================================
+   Адаптив
+   ========================================= */
+@media (max-width: 900px) {
+  .container { padding: 0 24px; }
+  .section { padding: 60px 0; }
+  .person-hero { padding: 60px 0 70px; }
+  .person-hero__grid { grid-template-columns: 1fr; gap: 40px; }
+  .person-hero__photo { max-width: 360px; margin: 0 auto; }
+  .accordion__trigger { font-size: 18px; padding: 22px 0; }
+}
+
+@media (max-width: 600px) {
+  .card-list__item { padding: 20px 22px; }
+  .accordion__trigger { font-size: 16px; gap: 16px; }
+  .accordion__icon { width: 36px; height: 36px; font-size: 26px; }
+  .accordion__list-item { font-size: 13px; }
+  .person-hero__photo { max-width: 280px; }
+  .person-hero__title { font-size: 32px; }
+}
