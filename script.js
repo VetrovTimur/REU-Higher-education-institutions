@@ -122,12 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    //   Универсальный слайдер (Partners / Alumni)
+    //   Универсальный слайдер (Partners / Alumni / News)
     // =========================================
     class SimpleSlider {
         constructor(section) {
             this.section = section;
-            this.prefix = section.dataset.slider;          // "partners" | "alumni"
+            this.prefix = section.dataset.slider;          // "partners" | "alumni" | "news"
+            this.fixedVisible = section.dataset.sliderVisible
+                ? parseInt(section.dataset.sliderVisible, 10)
+                : null;
+
             this.track = section.querySelector(`.${this.prefix}__box`);
             this.items = Array.from(this.track.children);
             this.prevBtn = section.querySelector('[data-slider-prev]');
@@ -135,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.dotsWrap = section.querySelector(`.${this.prefix}__dots`);
 
             this.index = 0;
-            this.visible = 3;
+            this.visible = 1;
 
             this.calcVisible();
             this.renderDots();
@@ -143,8 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
             this.update(false);
         }
 
-        /* Сколько карточек видно — синхронизировано с CSS-брейкпоинтами */
+        /* Сколько карточек видно — учитываем data-slider-visible или брейкпоинты */
         calcVisible() {
+            if (this.fixedVisible) {
+                this.visible = Math.min(this.fixedVisible, this.items.length);
+                return;
+            }
+
             const w = window.innerWidth;
             if (w <= 640) this.visible = 1;
             else if (w <= 1024) this.visible = 2;

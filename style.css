@@ -675,14 +675,14 @@ html[data-theme="red"] .theme-toggle__dot--red {
 }
 
 .partners__item img {
-    padding: 90px;
+    padding: 32px 100px 22px;
     display: block;
     max-width: 100%;
     margin: 0 auto;
 }
 
 .partners__item p {
-    padding-bottom: 32px;
+    padding-bottom: 22px;
     text-align: center;
     color: var(--color-text);
     font-size: 15px;
@@ -704,9 +704,9 @@ html[data-theme="red"] .theme-toggle__dot--red {
 .alumni__item img {
     display: block;
     width: 100%;
-    aspect-ratio: 1 / 1;           /* Квадрат — фото никогда не растянется */
-    object-fit: cover;             /* Обрезаем, не тянем */
-    object-position: center top;   /* Фокус на верх — лицо не обрежется */
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center top;
     background: linear-gradient(140deg, var(--color-gradient-start), var(--color-gradient-end));
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
@@ -755,9 +755,10 @@ html[data-theme="red"] .theme-toggle__dot--red {
     margin: 0;
 }
 
-/* --- Управление --- */
+/* --- Управление слайдерами --- */
 .partners__management,
-.alumni__management {
+.alumni__management,
+.news__management {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -765,14 +766,16 @@ html[data-theme="red"] .theme-toggle__dot--red {
 }
 
 .partners__dots,
-.alumni__dots {
+.alumni__dots,
+.news__dots {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
 .partners__dot,
-.alumni__dot {
+.alumni__dot,
+.news__dot {
     display: block;
     min-width: 24px;
     height: 2px;
@@ -784,25 +787,29 @@ html[data-theme="red"] .theme-toggle__dot--red {
 }
 
 .partners__dot:hover,
-.alumni__dot:hover {
+.alumni__dot:hover,
+.news__dot:hover {
     background-color: var(--color-dot-hover);
 }
 
 .partners__dot--active,
-.alumni__dot--active {
+.alumni__dot--active,
+.news__dot--active {
     min-width: 36px;
     background-color: var(--bg-color);
 }
 
 .partners__buttons,
-.alumni__buttons {
+.alumni__buttons,
+.news__buttons {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
 .partners__button,
-.alumni__button {
+.alumni__button,
+.news__button {
     width: 40px;
     height: 40px;
     display: flex;
@@ -816,21 +823,152 @@ html[data-theme="red"] .theme-toggle__dot--red {
 }
 
 .partners__button:hover:not(:disabled),
-.alumni__button:hover:not(:disabled) {
+.alumni__button:hover:not(:disabled),
+.news__button:hover:not(:disabled) {
     background: var(--bg-color);
     border-color: var(--bg-color);
     color: var(--color-white);
 }
 
 .partners__button:active:not(:disabled),
-.alumni__button:active:not(:disabled) {
+.alumni__button:active:not(:disabled),
+.news__button:active:not(:disabled) {
     transform: scale(0.96);
 }
 
 .partners__button:disabled,
-.alumni__button:disabled {
+.alumni__button:disabled,
+.news__button:disabled {
     opacity: 0.35;
     cursor: not-allowed;
+}
+
+/* =========================================
+   News (Slider)
+   ========================================= */
+.news__slider {
+    width: 100%;
+    overflow: hidden;
+    padding: 4px;
+    margin: -4px;
+}
+
+.news__box {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+.news__item {
+    flex: 0 0 100%;
+    min-width: 0;
+    padding: 35px 32px;
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-bg-light);
+    border-radius: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 44px;
+    transition: border-color var(--transition);
+}
+
+.news__item:hover {
+    border-color: var(--bg-color);
+}
+
+.news__left {
+    flex: 1 1 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 12px;
+    align-self: stretch;
+}
+
+.news__left img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+.news__right {
+    flex: 1 1 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 8px 0;
+}
+
+.news__inf {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.news__date {
+    color: var(--color-text-subtitle);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 19.2px;
+    letter-spacing: 1.68px;
+    text-transform: uppercase;
+}
+
+.news__decor {
+    display: block;
+    width: 20px;
+    height: 1px;
+    background-color: var(--color-border);
+    flex-shrink: 0;
+}
+
+.news__tag {
+    color: var(--color-accent);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 19.2px;
+    letter-spacing: 1.68px;
+    text-transform: uppercase;
+    transition: color var(--transition);
+}
+
+.news__title {
+    color: var(--color-text-strong);
+    font-size: 27.6px;
+    font-weight: 800;
+    line-height: 35px;
+    letter-spacing: -0.7px;
+    margin: 0;
+    transition: color var(--transition);
+}
+
+.news__text {
+    color: var(--color-text-subtitle);
+    font-size: 14.6px;
+    font-weight: 400;
+    line-height: 25.5px;
+    margin: 0;
+}
+
+.news__link {
+    color: var(--bg-color);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 19.2px;
+    letter-spacing: 1.92px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-top: 4px;
+    transition: var(--transition);
+}
+
+.news__link:hover {
+    transform: translateX(5px);
 }
 
 /* =========================================
@@ -921,6 +1059,14 @@ html[data-theme="red"] .theme-toggle__dot--red {
     gap: 40px;
 }
 
+.revers {
+    flex-direction: row-reverse;
+}
+
+.revers .footer__right {
+    justify-content: start;
+}
+
 .footer__left {
     max-width: 480px;
     flex: 1 1 400px;
@@ -947,7 +1093,7 @@ html[data-theme="red"] .theme-toggle__dot--red {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
     gap: 16px;
     flex: 1 1 auto;
 }
@@ -1003,9 +1149,26 @@ html[data-theme="red"] .theme-toggle__dot--red {
     .partners__item img {
         padding: 60px;
     }
+
+    .news__item {
+        flex-direction: column;
+        gap: 24px;
+        padding: 28px 24px;
+    }
+
+    .news__left,
+    .news__right {
+        flex: none;
+        width: 100%;
+    }
+
+    .news__left img {
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
 }
 
-/* --- Планшет/большая мобилка: 1 карточка в слайдерах --- */
+/* --- Большая мобилка: 1 карточка в слайдерах --- */
 @media (max-width: 640px) {
     .partners__item,
     .alumni__item {
@@ -1068,6 +1231,10 @@ html[data-theme="red"] .theme-toggle__dot--red {
         justify-content: flex-start;
     }
 
+    .revers {
+        flex-direction: column;
+    }
+
     .gallery__slide {
         height: 400px;
         font-size: 24px;
@@ -1092,6 +1259,17 @@ html[data-theme="red"] .theme-toggle__dot--red {
     .theme-toggle__dot {
         width: 14px;
         height: 14px;
+    }
+
+    .news__title {
+        font-size: 22px;
+        line-height: 28px;
+        letter-spacing: -0.4px;
+    }
+
+    .news__text {
+        font-size: 14px;
+        line-height: 22px;
     }
 }
 
@@ -1173,8 +1351,36 @@ html[data-theme="red"] .theme-toggle__dot--red {
     }
 
     .partners__management,
-    .alumni__management {
+    .alumni__management,
+    .news__management {
         flex-direction: column-reverse;
         gap: 20px;
+    }
+
+    .news__item {
+        padding: 20px 16px;
+        gap: 18px;
+    }
+
+    .news__title {
+        font-size: 20px;
+        line-height: 26px;
+        letter-spacing: -0.3px;
+    }
+
+    .news__text {
+        font-size: 13.5px;
+        line-height: 21px;
+    }
+
+    .news__inf {
+        flex-wrap: wrap;
+        gap: 8px 12px;
+    }
+
+    .news__date,
+    .news__tag {
+        font-size: 11px;
+        letter-spacing: 1.4px;
     }
 }
