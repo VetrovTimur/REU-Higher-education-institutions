@@ -88,11 +88,19 @@ button { font-family: inherit; }
 
 .person-hero__title {
   margin-bottom: 28px;
-  font-size: clamp(32px, 4.4vw, 52px);
+  font-size: clamp(32px, 4.4vw, 64px);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.08;
+  line-height: .75;
   color: var(--signal-white);
+}
+
+.person-hero__title span {
+    font-size: clamp(24px, 3.2vw, 36px);
+    font-weight: 600;
+    letter-spacing: -.02em;
+    line-height: .25;
+    color: rgba(255, 255, 255, .75);
 }
 
 .person-hero__roles {
